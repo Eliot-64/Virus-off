@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALERTE VIRUS</title>
+    <style>
+        body {
+            background-color: black;
+            color: red;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .warning {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        #countdown {
+            font-size: 50px;
+            margin-top: 20px;
+        }
+        .button {
+            background-color: red;
+            color: white;
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        let timeLeft = 30; // Temps en secondes
+        function startCountdown() {
+            const countdown = document.getElementById("countdown");
+            const interval = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    document.body.innerHTML = "<h1>TOUS VOS FICHIERS ONT ÉTÉ SUPPRIMÉS 😈</h1>";
+                } else {
+                    countdown.innerText = timeLeft + " secondes";
+                    timeLeft--;
+                }
+            }, 1000);
+        }
+
+        function playSound() {
+            const audio = new Audio("https://www.soundjay.com/button/beep-07.wav");
+            audio.loop = true;
+            audio.play();
+        }
+
+        function fakeCancel() {
+            alert("Erreur : Impossible d'annuler la suppression ! 😱");
+        }
+
+        window.onload = function() {
+            startCountdown();
+            playSound();
+        };
+    </script>
+</head>
+<body>
+    <div class="warning">⚠ ALERTE CRITIQUE : Votre appareil est infecté ! ⚠</div>
+    <p>Suppression des fichiers en cours...</p>
+    <div id="countdown">30 secondes</div>
+    <p>Veuillez ne pas éteindre votre appareil !</p>
+    <button class="button" onclick="fakeCancel()">Annuler</button>
+</body>
+</html>
